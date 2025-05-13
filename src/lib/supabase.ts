@@ -2,10 +2,13 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from '../types/supabase';
 
 // Initialize the Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);
+console.log('Attempting to read VITE_SUPABASE_URL on Netlify:', supabaseUrl);
+console.log('Attempting to read VITE_SUPABASE_ANON_KEY on Netlify:', supabaseAnonKey);
+
+export const supabase = createClient(supabaseUrl!, supabaseAnonKey!);
 
 // Authentication helper functions
 export const signUp = async (email: string, password: string) => {
